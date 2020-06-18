@@ -1,0 +1,73 @@
+[{ "name": "M1",
+    "layer": [
+    {
+        "name": "CL1",
+        "layerType": "Conv2D",
+        "size": [3, 3],
+        "dropOutRate": 0.0,
+        "numberOfChannels": 32,
+        "useRegularization": false,
+        "activationFunction": "relu",
+        "inputShape": [ 28, 28, 1 ]
+    },
+    {
+        "name": "MP1",
+        "layerType": "MaxPooling2D",
+        "size": [2, 2],
+        "dropOutRate": 0.0,
+        "numberOfChannels": 0,
+        "useRegularization": false,
+        "activationFunction": "",
+        "inputShape": [ 0, 0, 0 ]
+    },
+    {
+        "name": "DO1",
+        "layerType": "DropOut",
+        "size": [0],
+        "dropOutRate": 0.2,
+        "numberOfChannels": 0,
+        "useRegularization": false,
+        "activationFunction": "",
+        "inputShape": [ 0, 0, 0 ]
+    },
+    {
+        "name": "CL2",
+        "layerType": "Conv2D",
+        "size": [3, 3],
+        "dropOutRate": 0.0,
+        "numberOfChannels": 32,
+        "useRegularization": false,
+        "activationFunction": "relu",
+        "inputShape": [ 28, 28, 1 ]
+    },
+    {
+        "name": "FLAT1",
+        "layerType": "Flatten",
+        "size": [0],
+        "dropOutRate": 0.0,
+        "numberOfChannels": 0,
+        "useRegularization": false,
+        "activationFunction": "",
+        "inputShape": [ 0, 0, 0 ]
+    },
+    {
+        "name": "DE1",
+        "layerType": "Dense",
+        "size": 64,
+        "dropOutRate": 0.0,
+        "numberOfChannels": 0,
+        "useRegularization": false,
+        "activationFunction": "relu",
+        "inputShape": [ 0, 0, 0 ]
+    },
+    {
+        "name": "DE2",
+        "layerType": "Dense",
+        "size": 10,
+        "dropOutRate": 0.0,
+        "numberOfChannels": 0,
+        "useRegularization": false,
+        "activationFunction": "softmax",
+        "inputShape": [ 0, 0, 0 ]
+    }]
+}]
