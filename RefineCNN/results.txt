@@ -1,0 +1,21 @@
+
+With Augmentation
+ Best Results 
+ Winning Model:   66
+ Winning Epoch:   8
+ Value Accuracy:  0.9919999837875366
+
+With 60K dataset & Aug
+ Best Results 
+ Winning Model:   66
+ Winning Epoch:   5
+ Value Accuracy:  0.9900000095367432
+
+Without Augmentation
+ Best Results 
+ Winning Model:   66
+ Winning Epoch:   7
+ Value Accuracy:  0.9779999852180481
+_____________________________________________
+
+
