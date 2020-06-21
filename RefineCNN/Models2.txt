@@ -1,0 +1,114 @@
+1	C	"3,3"	32	relu	"28,28,1"	F	D	10	relu																												
+2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	F	D	64	relu	D	10	softmax																							
+3	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax																					
+4	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax																					
+5	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax																
+6	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax											
+7	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax												
+8	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax												
+9	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax			
+10	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	F	D	64	relu	D	10	softmax					
+11	C	"3,3"	32	relu	"28,28,1"	F	D	10	relu																												
+12	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	F	D	64	relu	D	32	relu	D	10	softmax																				
+13	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	32	relu	D	10	softmax																		
+14	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	32	relu	D	10	softmax																		
+15	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	32	relu	D	10	softmax													
+16	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	32	relu	D	10	softmax								
+17	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	32	relu	D	10	softmax									
+18	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	32	relu	D	10	softmax									
+19	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	32	relu	D	10	softmax
+20	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	32	relu	D	16	relu	D	10	softmax
+21	C	"3,3"	64	relu	"28,28,1"	F	D	10	softmax																												
+22	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	F	D	64	relu	D	10	softmax																							
+23	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax																					
+24	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax																					
+25	C	"3,3"	64	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax																
+26	C	"3,3"	64	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax											
+27	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax												
+28	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax												
+29	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	32	relu	D	10	softmax			
+30	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax			
+31	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	F	D	64	relu	D	10	softmax																					
+32	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	F	D	64	relu	D	10	softmax																					
+33	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	F	D	64	relu	D	10	softmax																
+34	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	F	D	64	relu	D	10	softmax											
+35	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	F	D	64	relu	D	10	softmax												
+36	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	F	D	64	relu	D	10	softmax												
+37	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	F	D	64	relu	D	10	softmax			
+38	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	F	D	64	relu	D	64	relu	D	10	softmax
+39	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	F	D	64	relu	D	32	relu	D	10	softmax																		
+40	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	F	D	64	relu	D	32	relu	D	10	softmax																		
+41	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	F	D	64	relu	D	32	relu	D	10	softmax													
+42	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	F	D	64	relu	D	32	relu	D	10	softmax								
+43	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	F	D	64	relu	D	32	relu	D	10	softmax									
+44	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	F	D	64	relu	D	32	relu	D	10	softmax									
+45	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	F	D	32	relu	D	32	relu	D	10	softmax
+46	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.4	F	D	64	relu	D	32	relu	D	10	softmax
+47	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	F	D	64	relu	D	10	softmax																					
+48	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	F	D	64	relu	D	10	softmax																					
+49	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	F	D	64	relu	D	10	softmax																
+50	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	F	D	64	relu	D	10	softmax											
+51	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	F	D	64	relu	D	10	softmax												
+52	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	F	D	64	relu	D	10	softmax												
+53	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	F	D	64	relu	D	10	softmax			
+54	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	F	D	64	relu	D	32	relu	D	10	softmax
+55	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	F	D	64	relu	D	32	relu	D	10	softmax																		
+56	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	F	D	64	relu	D	32	relu	D	10	softmax																		
+57	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	F	D	64	relu	D	32	relu	D	10	softmax													
+58	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	F	D	64	relu	D	32	relu	D	10	softmax								
+59	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	F	D	64	relu	D	32	relu	D	10	softmax									
+60	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	F	D	64	relu	D	32	relu	D	10	softmax									
+61	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	F	D	64	relu	D	32	relu	D	10	softmax
+62	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.6	F	D	32	relu	D	32	relu	D	10	softmax
+63	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	F	D	64	relu	D	10	softmax																							
+64	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax																					
+65	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax																					
+66	C	"3,3"	64	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax																
+67	C	"3,3"	64	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax											
+68	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax												
+69	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax												
+70	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax			
+71	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	32	relu	D	10	softmax			
+72	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	F	D	64	relu	D	10	softmax																							
+73	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax																					
+74	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax																					
+75	C	"3,3"	64	relu	"28,28,1"	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax																
+76	C	"3,3"	64	relu	"28,28,1"	C	"3,3"	64	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax											
+77	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax												
+78	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax												
+79	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax			
+80	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	32	relu	D	10	softmax			
+81	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	F	D	64	relu	D	10	softmax																							
+82	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax																					
+83	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax																					
+84	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax																
+85	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	64	relu	"28,28,1"	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax											
+86	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax												
+87	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax												
+88	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax			
+89	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	32	relu	D	10	softmax			
+90	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	D	32	relu	F	D	64	relu	D	10	softmax																		
+91	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	D	32	relu	F	D	64	relu	D	10	softmax																		
+92	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	D	32	relu	F	D	64	relu	D	10	softmax													
+93	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	64	relu	"28,28,1"	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax											
+94	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	D	32	relu	F	D	64	relu	D	10	softmax									
+95	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	D	32	relu	F	D	64	relu	D	10	softmax									
+96	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	32	relu	D	64	relu	D	10	softmax
+97	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax			
+98	C	"3,3"	16	relu	"28,28,1"	M	"2,2"	F	D	64	relu	D	10	softmax																							
+99	C	"3,3"	16	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax																					
+100	C	"3,3"	16	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax																					
+101	C	"3,3"	16	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax																
+102	C	"3,3"	16	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax											
+103	C	"3,3"	16	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax												
+104	C	"3,3"	16	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax												
+105	C	"3,3"	16	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax			
+106	C	"3,3"	16	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	32	relu	D	10	softmax
+107	C	"3,3"	64	relu	"28,28,1"	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax																
+108	C	"5,5"	64	relu	"28,28,1"	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax																
+109	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax																
+110	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	32	relu	D	10	softmax																
+107	C	"3,3"	64	relu	"28,28,1"	C	"3,3"	64	relu	"28,28,1"	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax											
+108	C	"5,5"	64	relu	"28,28,1"	C	"3,3"	64	relu	"28,28,1"	C	"3,3"	64	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax											
+109	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	64	relu	D	10	softmax											
+110	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	C	"3,3"	32	relu	"28,28,1"	M	"2,2"	R	0.2	F	D	32	relu	D	10	softmax											

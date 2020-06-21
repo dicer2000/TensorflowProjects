@@ -1,18 +1,15 @@
 """
-HPTest.py - Program to test multiple versions of a CNN Models
-against the Mnist dataset.  Program will determine best model
-and epoch combination based on the Value Accuracy returned
-for that test run.
+HPGenerate.py - Program takes a model scenerio and epochs 
+input, generates the model based on those hyperparameters, 
+and saves it to and HDH5 model called "MNIST.h5"
 Brett Huffman
 CSCI 390 - Tpcs: Artificial Intelligence Summer Interterm 2020
 Lab 1
 
-Input:  File from which to build CNN models in JSON format
-        (optionally) Model_No - directs the program to build 
-        the Model and output it to a MNINST.h5 file
-Output: Text reporting each model's layer configurations and
-        epoch accuracy
-        (optionally) MNINST.h5
+Input:  String - Input file name (json models file)
+        Int - Model No
+        Int - Epoch
+Output: An MNIST.h5 file
 """
 
 import json 
@@ -29,15 +26,16 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 # Check the stdin arguments
 inputfile = ''
-modelNo = -1
+modelNo = 1
+epochNo = 1
 try:
-    if len(sys.argv) < 2:
+    if len(sys.argv) < 4:
         raise Exception
     inputfile = sys.argv[1]
-    if len(sys.argv) > 2:
-        modelNo = int(sys.argv[2])
+    modelNo = int(sys.argv[2])
+    epochNo = int(sys.argv[3])
 except:
-      print('\nusage: HPTest.py [InputFile] <Model_Number>')
+      print('\nusage: HPGenerate.py [InputFile] Model_Number Epoch_Number')
       sys.exit(2)
 
 # The whole reason we are doing this:
@@ -143,7 +141,7 @@ test_labels = test_labels[:1000]
 # For Each Model in our test Mods
 for m in data:
 
-    # Only process one model if it's specified in ARGV
+    # Only process the one model specified
     if modelNo > 0 and m.name != modelNo:
         continue
 
@@ -172,7 +170,7 @@ for m in data:
     # For when using Augmentation Data
     train_generator = datagen.flow(train_data, train_labels, 
         batch_size = 128, shuffle = True)
-    hst = nn.fit(train_generator, epochs = 3,
+    hst = nn.fit(train_generator, epochs = epochNo,
         validation_data = (test_data, test_labels),
         verbose=1)
 
@@ -181,39 +179,14 @@ for m in data:
 #        validation_data = (test_data, test_labels),
 #        verbose=0)
 
-    # If we specified to save this model, do it now
-    if modelNo > -1:
-        nn.save('./MNIST.model')
-        print('Model saved to file')
+    # Save H5 file now
+    nn.save('./MNIST.h5') 
 
-    # Save the history
-    dataHistory = hst.history
-    lCounter = 0
-
-    # Find the winner of this model run
-    # and print it
-    modelMaxAcc = max(dataHistory['val_accuracy'])
-    modelBestEpoch = [i for i, j in enumerate(dataHistory['val_accuracy']) if j == modelMaxAcc]
-    print(' Best Model Epoch: ', modelBestEpoch[0])
-    print(' Best Model Val Accuracy: ', modelMaxAcc)
-
-    # Look for an All-Time winner and store it for later use
-    for dataElement in dataHistory['val_accuracy']:
-        lCounter += 1
-        # Save the best Model & Epoch if it exceeds the
-        # Max Val Accuracy for all our prior tests
-        if dataElement > maxValAccuracy:
-            maxValAccuracy = dataElement
-            maxValAccModel = m.name
-            bestEpoch = lCounter
-
-# Finally, print out our best results
-print('_____________________________________________')
-print(' Best Results ')
-print(' Winning Model:  ', maxValAccModel)
-print(' Winning Epoch:  ', bestEpoch)
-print(' Value Accuracy: ', maxValAccuracy)
-print('_____________________________________________')
-print('\n\n')
+    # Finally, print out our best results
+    print('_____________________________________________')
+    print(' Save Complete')
+    print('_____________________________________________')
+    print('\n\n')
+    exit()
 
                 

@@ -7,7 +7,7 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "args": ["/Users/brett/TensorFlowProjects/RefineCNN/ModelsOutput.txt"]
+            "args": ["/Users/brett/TensorFlowProjects/RefineCNN/ModelsOutput.json", "45", "4"]
         }
     ]
 }

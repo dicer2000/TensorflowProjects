@@ -37,7 +37,7 @@ models = []
 layers = []
 
 # Replace all quotes in input file
-with open('/Users/brett/TensorFlowProjects/RefineCNN/Models1.txt', 'r') as f, open('/Users/brett/TensorFlowProjects/RefineCNN/ModelsOutput.txt', 'w') as fo:
+with open('/Users/brett/TensorFlowProjects/RefineCNN/Models2.txt', 'r') as f, open('/Users/brett/TensorFlowProjects/RefineCNN/ModelsOutput.txt', 'w') as fo:
     for line in f:
         fo.write(line.replace('"', '').replace("'", ""))
 
