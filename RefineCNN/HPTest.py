@@ -2,7 +2,7 @@
 HPTest.py - Program to test multiple versions of a CNN Models
 against the Mnist dataset.  Program will determine best model
 and epoch combination based on the Value Accuracy returned
-for that test run.
+for the average of three runs through the data.
 Brett Huffman
 CSCI 390 - Tpcs: Artificial Intelligence Summer Interterm 2020
 Lab 1
@@ -26,6 +26,13 @@ import sys
 import tensorflow as tf
 import datetime
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
+
+# Global Vars
+MAX_EPOCH = 12
+
+# Vars for tracking totals
+OverallAvg_MaxAcc = 0.0
+OverallBestEpoch = 0
 
 # Check the stdin arguments
 inputfile = ''
@@ -51,7 +58,7 @@ bestEpoch = 0
 #   Mod = The test models to generate
 #   Layer = The layers within each model
 #   'data' will hold all the model data
-Mods = namedtuple('Model', ['name', 'layer'])
+Mods = namedtuple('Model', ['name', 'layer', 'bestResults', 'bestResultEpoch'])
 Lays = namedtuple('Layer', ['name', 'layerType', 'size', 'dropOutRate', 'numberOfChannels', 'useRegularization', 'activationFunction', 'inputShape'])
 
 def converter(dict):
@@ -140,64 +147,82 @@ test_labels = to_categorical(test_labels)
 train_labels = train_labels[:10000]
 test_labels = test_labels[:1000]
 
-# For Each Model in our test Mods
-for m in data:
+# Repeat each Model test 3 times to find our best avg results
+for Modi in [0, 1, 2]:
+    # For Each Model in our test Mods
+    for m in data:
 
-    # Only process one model if it's specified in ARGV
-    if modelNo > 0 and m.name != modelNo:
-        continue
-
-    print('_____________________________________________')
-    print('Model: ', m.name)
-#    print(m.layer)
-
-    # Create the NN
-    nn = models.Sequential(name=str(m.name))
-
-    # Dynamically add the specified layers
-    for l in m.layer:
-        nn.add(generateLayer(l))
-
-    # Summarize
-    #nn.summary()
+        # temporary
+        if m.name > 3:
+            continue
 
 
-    # Process it all, configure parameters, and get ready to train
-    nn.compile(
-        optimizer="RMSprop",             # Improved backprop algorithm
-        loss='categorical_crossentropy', # "Misprediction" measure
-        metrics=['accuracy']             # Report CCE value as we train
-    )
+        # Only process one model if it's specified in ARGV
+        if modelNo > 0 and m.name != modelNo:
+            continue
 
-    # For when using Augmentation Data
-    train_generator = datagen.flow(train_data, train_labels, 
-        batch_size = 128, shuffle = True)
-    hst = nn.fit(train_generator, epochs = 3,
-        validation_data = (test_data, test_labels),
-        verbose=1)
+        print('_____________________________________________')
+        print('Model: ', m.name)
+    #    print(m.layer)
 
-    # For when using no Augmentation Data
-#    hst = nn.fit(train_data, train_labels, epochs = 12, batch_size = 64,
-#        validation_data = (test_data, test_labels),
-#        verbose=0)
+        # Setup an early-stopping callback so that once we have 
+        # two decreasing val_accuracy values, stop processing that model
+        earlyStopCallback = tf.keras.callbacks.EarlyStopping(mode='auto', 
+            monitor='val_accuracy', min_delta=0.0001, patience=1)
+        
+        # Create the NN
+        nn = models.Sequential(name=str(m.name))
 
-    # If we specified to save this model, do it now
-    if modelNo > -1:
-        nn.save('./MNIST.model')
-        print('Model saved to file')
+        # Dynamically add the specified layers
+        for l in m.layer:
+            nn.add(generateLayer(l))
 
-    # Save the history
-    dataHistory = hst.history
-    lCounter = 0
+        # Summarize
+        #nn.summary()
 
-    # Find the winner of this model run
-    # and print it
-    modelMaxAcc = max(dataHistory['val_accuracy'])
-    modelBestEpoch = [i for i, j in enumerate(dataHistory['val_accuracy']) if j == modelMaxAcc]
-    print(' Best Model Epoch: ', modelBestEpoch[0])
-    print(' Best Model Val Accuracy: ', modelMaxAcc)
 
-    # Look for an All-Time winner and store it for later use
+        # Process it all, configure parameters, and get ready to train
+        nn.compile(
+            optimizer="RMSprop",             # Improved backprop algorithm
+            loss='categorical_crossentropy', # "Misprediction" measure
+            metrics=['accuracy']             # Report CCE value as we train
+        )
+
+        # For when using Augmentation Data
+        train_generator = datagen.flow(train_data, train_labels, 
+            batch_size = 128, shuffle = True)
+        hst = nn.fit(train_generator, epochs = MAX_EPOCH,
+            validation_data = (test_data, test_labels),
+            verbose=1, callbacks=[earlyStopCallback])
+
+        # For when using no Augmentation Data
+    #    hst = nn.fit(train_data, train_labels, epochs = 12, batch_size = 64,
+    #        validation_data = (test_data, test_labels),
+    #        verbose=0)
+
+        # If we specified to save this model, do it now
+        if modelNo > -1:
+            nn.save('./MNIST.model')
+            print('Model saved to file')
+
+        # Save the history
+        dataHistory = hst.history
+        lCounter = 0
+
+        # Find the winner of this model run
+        # and print it
+        modelMaxAcc = max(dataHistory['val_accuracy'])
+        modelBestEpoch = [i for i, j in enumerate(dataHistory['val_accuracy']) if j == modelMaxAcc]
+        print(' Best Model Epoch: ', modelBestEpoch[0])
+        print(' Best Model Val Accuracy: ', modelMaxAcc)
+
+        # Save the winner to an array of results in this model object
+        m.bestResults[Modi]=modelMaxAcc
+        m.bestResultEpoch[Modi]=modelBestEpoch[0]
+
+    """
+    # Look for an All-Time winner based on the average of the
+    # three results given back and store it for later use
     for dataElement in dataHistory['val_accuracy']:
         lCounter += 1
         # Save the best Model & Epoch if it exceeds the
@@ -206,14 +231,33 @@ for m in data:
             maxValAccuracy = dataElement
             maxValAccModel = m.name
             bestEpoch = lCounter
+"""
 
-# Finally, print out our best results
+# Define and average function
+def Average(lst): 
+    return sum(lst) / len(lst)
+
+# Finally, Look for an All-Time winner based on the 
+# average of the three results given back and
+# print out that best average with best epoch
+bestModel = 0
+bestEpoch = 0
+bestAvgValAccuracy = 0.0
+for m in data:
+    print(m.bestResults)
+    lModelAvg = Average(m.bestResults)
+    if(lModelAvg > bestAvgValAccuracy):
+        # Store the best average and the epoch
+        # for the best result
+        bestModel = m.name
+        OverallAvg_MaxAcc = lModelAvg
+        modelMaxAcc = max(m.bestResults)
+        OverallBestEpoch = [i for i, j in enumerate(m.bestResults) if j == modelMaxAcc]
+
 print('_____________________________________________')
 print(' Best Results ')
-print(' Winning Model:  ', maxValAccModel)
-print(' Winning Epoch:  ', bestEpoch)
-print(' Value Accuracy: ', maxValAccuracy)
+print(' Winning Model:  ', bestModel)
+print(' Winning Epoch:  ', OverallBestEpoch[0]+1)
+print(' AVG Value Accuracy: ', OverallAvg_MaxAcc)
 print('_____________________________________________')
 print('\n\n')
-
-                

@@ -27,6 +27,8 @@ class Models(object):
     def __init__(self, name, layer):
         self.name = name
         self.layer = layer
+        self.bestResults = [0.0,0.0,0.0]
+        self.bestResultEpoch = [0,0,0]
 
 class ModelEncoder(JSONEncoder):
         def default(self, o):
