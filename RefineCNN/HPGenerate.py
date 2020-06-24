@@ -35,7 +35,7 @@ try:
     modelNo = int(sys.argv[2])
     epochNo = int(sys.argv[3])
 except:
-      print('\nusage: HPGenerate.py [InputFile] Model_Number Epoch_Number')
+      print('\nusage: python HPGenerate.py [InputFile] Model_Number Epoch_Number')
       sys.exit(2)
 
 # The whole reason we are doing this:

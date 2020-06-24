@@ -19,3 +19,4 @@ Without Augmentation
 _____________________________________________
 
 
+//            "args": ["/Users/brett/TensorFlowProjects/RefineCNN/ModelsOutput.json", "66"]

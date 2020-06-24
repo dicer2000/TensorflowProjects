@@ -26,6 +26,7 @@ import sys
 import tensorflow as tf
 import datetime
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
+import logging
 
 # Global Vars
 MAX_EPOCH = 12
@@ -33,6 +34,9 @@ MAX_EPOCH = 12
 # Vars for tracking totals
 OverallAvg_MaxAcc = 0.0
 OverallBestEpoch = 0
+
+# Setup logging so I can watch progress, but not send it to STDOUT
+logging.basicConfig(filename='progress.log',level=logging.DEBUG)
 
 # Check the stdin arguments
 inputfile = ''
@@ -44,7 +48,7 @@ try:
     if len(sys.argv) > 2:
         modelNo = int(sys.argv[2])
 except:
-      print('\nusage: HPTest.py [InputFile] <Model_Number>')
+      print('\nusage: python HPTest.py [InputFile] <Model_Number>')
       sys.exit(2)
 
 # The whole reason we are doing this:
@@ -69,10 +73,16 @@ def converter(dict):
 
 def Conv2D(layer):
     print('Conv2D Layer: Channels: ', layer.numberOfChannels,' Act: ',layer.activationFunction, ' Shape: ', layer.inputShape, ' ', layer.size)
-    return layers.Conv2D(layer.numberOfChannels, layer.size, 
-        activation=layer.activationFunction, input_shape=layer.inputShape, 
-        kernel_regularizer=tf.keras.regularizers.l2(0.001),
-        activity_regularizer=tf.keras.regularizers.l2(0.01))
+    if(layer.activationFunction=='relu'):
+        return layers.Conv2D(layer.numberOfChannels, layer.size, 
+            activation=tf.keras.layers.LeakyReLU(alpha=0.3), input_shape=layer.inputShape, 
+            kernel_regularizer=tf.keras.regularizers.l2(0.001),
+            activity_regularizer=tf.keras.regularizers.l2(0.01))
+    else:
+        return layers.Conv2D(layer.numberOfChannels, layer.size, 
+            activation=layer.activationFunction, input_shape=layer.inputShape, 
+            kernel_regularizer=tf.keras.regularizers.l2(0.001),
+            activity_regularizer=tf.keras.regularizers.l2(0.01))
 
 def Max2D(layer):
     print('Max2D Layer: ',layer.size)
@@ -88,10 +98,16 @@ def Flatten(layer):
 
 def Dense(layer):
     print('Dense Layer: Act: ', layer.activationFunction, ' ', layer.size[0])
-    return layers.Dense(int(layer.size[0]), 
-        activation=layer.activationFunction, 
-        kernel_regularizer=tf.keras.regularizers.l2(0.001),
-        activity_regularizer=tf.keras.regularizers.l2(0.01))
+    if(layer.activationFunction=='relu'):
+        return layers.Dense(int(layer.size[0]), 
+            activation=tf.keras.layers.LeakyReLU(alpha=0.3), 
+            kernel_regularizer=tf.keras.regularizers.l2(0.001),
+            activity_regularizer=tf.keras.regularizers.l2(0.01))
+    else:
+        return layers.Dense(int(layer.size[0]), 
+            activation=layer.activationFunction, 
+            kernel_regularizer=tf.keras.regularizers.l2(0.001),
+            activity_regularizer=tf.keras.regularizers.l2(0.01))
 
 switcher = {
         "Conv2D": Conv2D,
@@ -133,7 +149,7 @@ datagen = ImageDataGenerator(
 train_data = train_data.reshape((60000, 28, 28, 1))
 test_data = test_data.reshape((10000, 28, 28, 1))
 
-train_data = train_data[:10000]
+train_data = train_data[:60000]
 test_data = test_data[:1000]
 
 # Revise pixel data to 0.0 to 1.0, 32-bit float (this isn't quantum science)
@@ -144,7 +160,7 @@ test_data = test_data.astype('float32') / 255
 train_labels = to_categorical(train_labels)
 test_labels = to_categorical(test_labels)
 
-train_labels = train_labels[:10000]
+train_labels = train_labels[:60000]
 test_labels = test_labels[:1000]
 
 # Repeat each Model test 3 times to find our best avg results
@@ -153,8 +169,8 @@ for Modi in [0, 1, 2]:
     for m in data:
 
         # temporary
-        if m.name > 3:
-            continue
+#        if m.name > 3:
+#            continue
 
 
         # Only process one model if it's specified in ARGV
@@ -163,12 +179,16 @@ for Modi in [0, 1, 2]:
 
         print('_____________________________________________')
         print('Model: ', m.name)
+
+        logging.debug('_____________________________________________')
+        logging.debug('Model: ' + str(m.name))
     #    print(m.layer)
 
         # Setup an early-stopping callback so that once we have 
         # two decreasing val_accuracy values, stop processing that model
         earlyStopCallback = tf.keras.callbacks.EarlyStopping(mode='auto', 
-            monitor='val_accuracy', min_delta=0.0001, patience=1)
+            monitor='loss', patience=3)
+#            monitor='val_accuracy', min_delta=0.0001, patience=2)
         
         # Create the NN
         nn = models.Sequential(name=str(m.name))
@@ -189,20 +209,20 @@ for Modi in [0, 1, 2]:
         )
 
         # For when using Augmentation Data
-        train_generator = datagen.flow(train_data, train_labels, 
-            batch_size = 128, shuffle = True)
-        hst = nn.fit(train_generator, epochs = MAX_EPOCH,
-            validation_data = (test_data, test_labels),
-            verbose=1, callbacks=[earlyStopCallback])
+#        train_generator = datagen.flow(train_data, train_labels, 
+#            batch_size = 128, shuffle = True)
+#        hst = nn.fit(train_generator, epochs = MAX_EPOCH,
+#            validation_data = (test_data, test_labels),
+#            verbose=0, callbacks=[earlyStopCallback])
 
         # For when using no Augmentation Data
-    #    hst = nn.fit(train_data, train_labels, epochs = 12, batch_size = 64,
-    #        validation_data = (test_data, test_labels),
-    #        verbose=0)
+        hst = nn.fit(train_data, train_labels, epochs = 12, batch_size = 64,
+            validation_data = (test_data, test_labels),
+            verbose=0, callbacks=[earlyStopCallback])
 
         # If we specified to save this model, do it now
         if modelNo > -1:
-            nn.save('./MNIST.model')
+            nn.save('./MNIST.H5', overwrite=True, save_format='h5')
             print('Model saved to file')
 
         # Save the history
@@ -213,8 +233,10 @@ for Modi in [0, 1, 2]:
         # and print it
         modelMaxAcc = max(dataHistory['val_accuracy'])
         modelBestEpoch = [i for i, j in enumerate(dataHistory['val_accuracy']) if j == modelMaxAcc]
-        print(' Best Model Epoch: ', modelBestEpoch[0])
+        print(' Best Model Epoch: ', modelBestEpoch[0]+1)
         print(' Best Model Val Accuracy: ', modelMaxAcc)
+        logging.debug(' Best Model Epoch: ' + str(modelBestEpoch[0]+1))
+        logging.debug(' Best Model Val Accuracy: ' + str(modelMaxAcc))
 
         # Save the winner to an array of results in this model object
         m.bestResults[Modi]=modelMaxAcc
@@ -244,7 +266,7 @@ bestModel = 0
 bestEpoch = 0
 bestAvgValAccuracy = 0.0
 for m in data:
-    print(m.bestResults)
+#    print(m.bestResults)
     lModelAvg = Average(m.bestResults)
     if(lModelAvg > bestAvgValAccuracy):
         # Store the best average and the epoch
