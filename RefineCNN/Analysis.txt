@@ -1,0 +1,59 @@
+Analysis.txt - a short description of the hyperparameters you tried, 
+and the outcomes you saw, including the hyperparameter set you 
+decided on, including channels per convo layer and any 
+regularization or dropout. Discuss the data augmentation you used. 
+Include also the final accuracy obtained in MNISTClassify.py
+
+Brett Huffman
+CSCI 390 - Artificial Intelligence Summer Interterm 2020
+Lab 1
+
+In my execution of the MNIST research, I tried many models, 
+120 in total.  I used Excel to build a large table of all the
+combinations of model layers.  I then outputted it to a Tab
+delimited file.  I then wrote a Python file to take the tab
+file and convert it to JSON.  Python was especially well-suited
+for that task.
+
+My most successful model seemed to be less complicated than
+I expected.  I thought more layers might be most successful. However,
+in the end, several of my least-complicated models seemed to yield
+the best Value Accuracy.
+
+Specifically, model #14 seemed to be best.  It included the following
+layers:
+
+Conv2D Layer: Channels:  32  Act:  relu  Shape:  [28, 28, 1]   [3, 3]
+Max2D Layer:  [2, 2]
+Dropout Layer:  0.2
+Flatten Layer
+Dense Layer: Act:  relu   64
+Dense Layer: Act:  relu   32
+Dense Layer: Act:  softmax   10
+
+In the 8th epoch, it yielded the best accuracy level of 98.1%
+
+I tried many different combinations of convolutional layers along
+with Max2Ds and Dropouts.  They seemed to all hurt my results.
+
+I also tried different activation functions including Leaky ReLU,
+Sigmoid and Tanh.  Regular ReLU seemed to always be best.
+
+For Regularization, I used the kernel_regularizer of .001 and 
+activity_regularizer of .01.  This seemed to raise my results by
+at least 4%.
+
+I did implement Data Augmentation.  However, it seemed to only 
+hurt my results.  I was not able to get infinite Augmentation
+working.  So, I just applied it to the existing images included
+in the MNIST library.  This did not work well at all.  I've left
+my Data Augmentation code in the source code, but have commented
+it out for better results (HPTest.py Lines 199-204)
+
+One note is that I used the HPTest.py code to also generate models.
+So, if you supply the model number as the last parameter to the
+script, the MNIST.h5 file will be generated.  Thus, there is not
+a HPGenerate.py file included.
+
+Final results for accuracy were 98.1% with the CountHits.py file
+reporting 9804.

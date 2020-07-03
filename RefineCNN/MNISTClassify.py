@@ -45,10 +45,9 @@ test_data = test_data.astype('float32') / 255
 
 # Open the file
 new_model = tf.keras.models.load_model(modelfile)
-
-
+# Make the prediction
 prediction = new_model.predict(test_data)
 
+# Output the rows of prediction data
 for row in prediction:
     print(numpy.argmax(row))
-#    sys.stdout.write(str(numpy.argmax(row)))

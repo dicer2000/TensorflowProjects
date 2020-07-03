@@ -73,16 +73,10 @@ def converter(dict):
 
 def Conv2D(layer):
     print('Conv2D Layer: Channels: ', layer.numberOfChannels,' Act: ',layer.activationFunction, ' Shape: ', layer.inputShape, ' ', layer.size)
-    if(layer.activationFunction=='relu'):
-        return layers.Conv2D(layer.numberOfChannels, layer.size, 
-            activation=tf.keras.layers.LeakyReLU(alpha=0.3), input_shape=layer.inputShape, 
-            kernel_regularizer=tf.keras.regularizers.l2(0.001),
-            activity_regularizer=tf.keras.regularizers.l2(0.01))
-    else:
-        return layers.Conv2D(layer.numberOfChannels, layer.size, 
-            activation=layer.activationFunction, input_shape=layer.inputShape, 
-            kernel_regularizer=tf.keras.regularizers.l2(0.001),
-            activity_regularizer=tf.keras.regularizers.l2(0.01))
+    return layers.Conv2D(layer.numberOfChannels, layer.size, 
+        activation=layer.activationFunction, input_shape=layer.inputShape, 
+        kernel_regularizer=tf.keras.regularizers.l2(0.001),
+        activity_regularizer=tf.keras.regularizers.l2(0.01))
 
 def Max2D(layer):
     print('Max2D Layer: ',layer.size)
@@ -98,16 +92,10 @@ def Flatten(layer):
 
 def Dense(layer):
     print('Dense Layer: Act: ', layer.activationFunction, ' ', layer.size[0])
-    if(layer.activationFunction=='relu'):
-        return layers.Dense(int(layer.size[0]), 
-            activation=tf.keras.layers.LeakyReLU(alpha=0.3), 
-            kernel_regularizer=tf.keras.regularizers.l2(0.001),
-            activity_regularizer=tf.keras.regularizers.l2(0.01))
-    else:
-        return layers.Dense(int(layer.size[0]), 
-            activation=layer.activationFunction, 
-            kernel_regularizer=tf.keras.regularizers.l2(0.001),
-            activity_regularizer=tf.keras.regularizers.l2(0.01))
+    return layers.Dense(int(layer.size[0]), 
+        activation=layer.activationFunction, 
+        kernel_regularizer=tf.keras.regularizers.l2(0.001),
+        activity_regularizer=tf.keras.regularizers.l2(0.01))
 
 switcher = {
         "Conv2D": Conv2D,
